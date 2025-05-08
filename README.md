@@ -24,12 +24,26 @@ Steps to follow:
 *   Example for debian :
 *   http://sg.danny.cz/sg/sg3_utils.html
 *   Then go to Download and Build 
-*   Then scroll down to download 1.42 --- sg3-utils_1.42-0.1_i386.deb (for 32 bit system) or sg3-utils_1.42-0.1_amd64.deb (for 64 bit system) and install it by just opening it.
-  
+*   Then scroll down to download 1.42 --- sg3-utils_1.42-0.1_i386.deb (for 32 bit system) or sg3-utils_1.42-0.1_amd64.deb (for 64 bit system) and install it by just opening it.  
 *  In case link expires refer my github link for sg3_utils -- https://github.com/geekhaidar/sg3_utils_WD
+*  Or else you can use the apt repo using 
+    sudo apt update
+    sudo apt install sg3-utils
+*   dnf,yum,brew etc also have sg3-util
   
 7. sudo sg_raw -s 40 -i password.bin /dev/sdb c1 e1 00 00 00 00 00 00 28 00
 *   (Note : Instead of "sdb" enter the name of your WD as acquired in Step 2)
 *   It will ask your password enter it.
 8. You will get an output : "SCSI Status : Good" on being successful
+    This will show the list of partitions in your drive. But most probably they won't get mounted automatically.
+9. Mounting the partitions
+* Create a directory to mount
+    sudo mkdir -p /mnt/disk1
+* Get the partition names with
+    sblk /dev/sdb
+![image](https://github.com/user-attachments/assets/daa2b971-c8a9-4dd8-84ba-1a618a3597c7)
+(in this image it has sda)
+* Mount the partition accordingly
+    sudo mount /dev/sdb1 /mnt/disk1
+
    
